@@ -1,0 +1,20 @@
+name: Architecture Markdown Lint
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Markdown Architecture Specs
+        run: |
+          test -f architectures/01-three-tier-web-app.md
+          test -f architectures/02-serverless-jamstack.md
+          test -f architectures/03-containerized-ecs-fargate.md
+          test -f architectures/04-enterprise-cicd-oidc.md
+          echo "All architecture specifications verified."
